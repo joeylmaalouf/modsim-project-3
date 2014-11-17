@@ -1,14 +1,11 @@
 function res = iteration1(a1, a2, l1, l2)
-    P1 = [l1*sin(a1), -l1*cos(a1)];
-    % P2 = [l2*sin(a2), -l2*cos(a2)];
-    n = 100;
-    P = zeros(n, 4);
-    P(1, 1) = P1(1);
-    P(1, 2) = P1(2);
-    % P(1, 3) = P2(1);
-    % P(1, 4) = P2(2);
-    for i = 2:n
-        P(i, 1) % = ??
-        P(i, 2) % = ??
+    n = 200;
+    P = zeros(n, 2);
+    P(1, 1) = a1;
+    % P(1, 2) = a2;
+    for t = 2:n
+        P(t, 1) = mod(a1*sin(sqrt(9.81/l1))*t, 360);
+        % P(i, 2) = ??
     end
+    comet(l1*sin(P(:, 1)), -l1*cos(P(:, 1)));
 end
