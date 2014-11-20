@@ -13,18 +13,18 @@ function res = iteration4(a1, l1, a2, l2, mratio)
     hold on;
     plot(coords(:, 1), coords(:, 2), 'r');
     plot(coords(:, 3), coords(:, 4), 'g');
-    ax = gca;
-    h = hgtransform('Parent', ax);
-    hold on;
-    plot(coords(1, 1), coords(1, 2), 'ro', 'Parent', h);
-    hold off;
-%    for i = 2:length(O)
-%        m = makehgtform('translate',...
-%            coords(i, 1)-coords(1, 1),...
-%            coords(i, 2)-coords(1, 2), 0);
-%        h.Matrix = m;
-%        drawnow;
-%    end
+%     ax = gca;
+%     h = hgtransform('Parent', ax);
+%     hold on;
+%     plot(coords(1, 1), coords(1, 2), 'ro', 'Parent', h);
+%     hold off;
+%     for i = 2:length(O)
+%         m = makehgtform('translate',...
+%             coords(i, 1)-coords(1, 1),...
+%             coords(i, 2)-coords(1, 2), 0);
+%         h.Matrix = m;
+%         drawnow;
+%     end
 
     function res = calc(t, W)
         theta1 = W(1);  % angle of pendulum 1
