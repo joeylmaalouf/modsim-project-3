@@ -3,7 +3,7 @@ function res = iteration2(a1, l1, a2, l2)
     g = -9.81;
     v1 = 0;
     v2 = 0;
-    [T, O] = ode45(@calc, 0:0.01:100, [a1, a2, v1, v2]);
+    [T, O] = ode45(@calc, 0:0.01:100, [a1*pi/180, a2*pi/180, v1, v2]);
     hold on;
     plot(l1*sin(O(:, 1)), l1*cos(O(:, 1)), 'r');
     plot(l1*sin(O(:, 1))+l2*sin(O(:, 2)), l1*cos(O(:, 1))+l2*cos(O(:, 2)), 'g');
