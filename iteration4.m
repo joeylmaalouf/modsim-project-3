@@ -10,22 +10,11 @@ function res = iteration4(a1, l1, a2, l2, mratio)
     coords(:, 2) = l1*cos(O(:, 1));
     coords(:, 3) = l1*sin(O(:, 1))+l2*sin(O(:, 2));
     coords(:, 4) = l1*cos(O(:, 1))+l2*cos(O(:, 2));
-    hold on;
-    plot(coords(:, 1), coords(:, 2), 'r');
-    plot(coords(:, 3), coords(:, 4), 'g');
-%     ax = gca;
-%     h = hgtransform('Parent', ax);
-%     hold on;
-%     plot(coords(1, 1), coords(1, 2), 'ro', 'Parent', h);
-%     hold off;
-%     for i = 2:length(O)
-%         m = makehgtform('translate',...
-%             coords(i, 1)-coords(1, 1),...
-%             coords(i, 2)-coords(1, 2), 0);
-%         h.Matrix = m;
-%         drawnow;
-%     end
-
+    animate_func(T, coords);
+    % hold on;
+    % plot(coords(:, 1), coords(:, 2), 'r');
+    % plot(coords(:, 3), coords(:, 4), 'g');
+    
     function res = calc(t, W)
         theta1 = W(1);  % angle of pendulum 1
         theta2 = W(2);  % angle of pendulum 2
@@ -43,5 +32,22 @@ function res = iteration4(a1, l1, a2, l2, mratio)
             -g*sin(theta2)*(m1+m2))...
             /(l2*(m1+m2)-m2*l2*cos(theta1-theta2)^2);
         res = [dTHETA1dt; dTHETA2dt; dOMEGA1dt; dOMEGA2dt];
+    end
+    
+    function animate_func(T, C)
+        X1 = C(:,1); Y1 = C(:,2);
+        X2 = C(:,3); Y2 = C(:,4);
+        minmax = [min([X1;X2]), max([X1;X2]), min([Y1;Y2]), max([Y1;Y2])];
+        for i=1:length(T)
+            clf;
+            axis(minmax);
+            hold on;
+            plot(X1(i), Y1(i), 'ro', 'MarkerSize', 10);
+            plot(X2(i), Y2(i), 'go', 'MarkerSize', 10);
+            plot(X1(1:i), Y1(1:i), 'r.', 'MarkerSize', 4);
+            plot(X2(1:i), Y2(1:i), 'g.', 'MarkerSize', 4);
+            line([X1(i), X2(i)], [Y1(i), Y2(i)]);
+            drawnow;
+        end
     end
 end
