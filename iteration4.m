@@ -42,10 +42,12 @@ function res = iteration4(a1, l1, a2, l2, mratio)
             clf;
             axis(minmax);
             hold on;
+            plot(0, 0, 'ko', 'MarkerSize', 10);
             plot(X1(i), Y1(i), 'ro', 'MarkerSize', 10);
             plot(X2(i), Y2(i), 'go', 'MarkerSize', 10);
             plot(X1(1:i), Y1(1:i), 'r.', 'MarkerSize', 4);
             plot(X2(1:i), Y2(1:i), 'g.', 'MarkerSize', 4);
+            line([0, X1(i)], [0, Y1(i)]);
             line([X1(i), X2(i)], [Y1(i), Y2(i)]);
             drawnow;
         end
