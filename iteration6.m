@@ -1,7 +1,7 @@
 function res = iteration6(a1, l1, a2, l2, mratio)
     % set up our initial numbers
-    a1 = a1*pi/180;
-    a2 = a2*pi/180;
+    a1 = a1 * pi / 180;
+    a2 = a2 * pi / 180;
     m1 = mratio; m2 = 1;
     g = -9.81;
     v1 = 0; v2 = 0;
@@ -11,15 +11,15 @@ function res = iteration6(a1, l1, a2, l2, mratio)
     res = [O(end, 1), O(end, 2), O(end, 3), O(end, 4)];
     % calculate x and y coords from length and angle
     coords = zeros(length(O), 4);
-    coords(:, 1) = l1*sin(O(:, 1));
-    coords(:, 2) = l1*cos(O(:, 1));
-    coords(:, 3) = l1*sin(O(:, 1))+l2*sin(O(:, 2));
-    coords(:, 4) = l1*cos(O(:, 1))+l2*cos(O(:, 2));
+    coords(:, 1) = l1 * sin(O(:, 1));
+    coords(:, 2) = l1 * cos(O(:, 1));
+    coords(:, 3) = l1 * sin(O(:, 1)) + l2 * sin(O(:, 2));
+    coords(:, 4) = l1 * cos(O(:, 1)) + l2 * cos(O(:, 2));
     animate(T, coords);
     
     function res = calc(~, W)
-        theta1 = W(1);  % angle of pendulum 1
-        theta2 = W(2);  % angle of pendulum 2
+        theta1 = mod(W(1), 2 * pi);  % angle of pendulum 1
+        theta2 = mod(W(2), 2 * pi);  % angle of pendulum 2
         omega1 = W(3);  % rotational velocity 1
         omega2 = W(4);  % rotational velocity 1
         dTHETA1dt = omega1;
