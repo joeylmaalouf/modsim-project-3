@@ -6,7 +6,7 @@ function res = iteration6(a1, l1, a2, l2, mratio)
     g = -9.81;
     v1 = 0; v2 = 0;
     % calculate the future angles and velocities over time
-    [T, O] = ode45(@calc, 0:0.005:100, [a1, a2, v1, v2]);
+    [T, O] = ode113(@calc, 0:0.005:100, [a1, a2, v1, v2]);
     % return the angles and velocities of the two pendulums
     res = [O(end, 1), O(end, 2), O(end, 3), O(end, 4)];
     % calculate x and y coords from length and angle
