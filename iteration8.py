@@ -43,3 +43,6 @@ x1 = l1 * sin(y[:, 0])
 y1 = -l1 * cos(y[:, 0])
 x2 = l2 * sin(y[:, 1]) + x1
 y2 = -l2 * cos(y[:, 1]) + y1
+
+plt.plot(x1, y1, x2, y2)
+plt.show()
