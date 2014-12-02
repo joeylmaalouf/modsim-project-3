@@ -15,6 +15,17 @@ function res = iteration7(a1, l1, a2, l2, mratio)
     coords(:, 2) = l1 * cos(O(:, 1));
     coords(:, 3) = l1 * sin(O(:, 1)) + l2 * sin(O(:, 2));
     coords(:, 4) = l1 * cos(O(:, 1)) + l2 * cos(O(:, 2));
+    
+    V1 = O(:,3)*l1;
+    V2 = (O(:,4)*l2).^2 + (l1*O(:,3)).^2 + 2*l1*l2*O(:,3).*O(:,4).* cos(O(:,1)-O(:,2));
+    
+    U = m1*g*coords(:,2) +m2 * g *coords(:,4);
+    K = .5*m1 *V1.^2 + .5*m2*V2;
+    E = K -U;
+    figure(1)
+    plot(E)
+    
+    figure(2)
     animate(T, coords);
     
     function res = calc(~, W)
