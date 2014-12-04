@@ -11,7 +11,7 @@ import scipy.integrate as integrate
 import matplotlib.animation as animation
 import seaborn as sns
 
-G = 9.8   # acceleration due to gravity, in m/s^2
+G = 9.81  # acceleration due to gravity, in m/s^2
 L1 = 1.0  # length of pendulum 1 in m
 L2 = 1.0  # length of pendulum 2 in m
 M1 = 1.0  # mass of pendulum 1 in kg
@@ -28,9 +28,7 @@ def derivs(state, t):
     dydx[1] = (M2*L1*state[1]*state[1]*sin(del_)*cos(del_)
                + M2*G*sin(state[2])*cos(del_)+M2*L2*state[3]*state[3]*sin(del_)
                - (M1+M2)*G*sin(state[0]))/den1
-
     dydx[2] = state[3]
-
     den2 = (L2/L1)*den1
     dydx[3] = (-M2*L2*state[3]*state[3]*sin(del_)*cos(del_)
                + (M1+M2)*G*sin(state[0])*cos(del_)
@@ -39,7 +37,6 @@ def derivs(state, t):
 
     return dydx
 
-# create a time array from 0..20 sampled at 0.05 second steps
 dt = 0.05
 t = np.arange(0.0, 20, dt)
 
@@ -49,37 +46,28 @@ th1 = 90.0
 w1 = 0.0
 th2 = 90.0
 w2 = 0.0
-
 rad = pi/180
-
-# initial state
 state = np.array([th1, w1, th2, w2])*pi/180.
-
-# integrate your ODE using scipy.integrate.
 y = integrate.odeint(derivs, state, t)
 
 x1 = L1 * sin(y[:, 0])
 y1 = -L1 * cos(y[:, 0])
-
 x2 = L2 * sin(y[:, 2]) + x1
 y2 = -L2 * cos(y[:, 2]) + y1
 
-# Energy calculations
-
+# energy calculations
 U = M1 * G * y1 + M2*G*y2
-K1 = .5* M1 * np.power(y[:,1],2) +  .5*M2 * ( np.power(y[:,1],2) + np.power(y[:,3],2) + 2 * np.multiply( np.multiply(y[:,1], y[:,3]) , cos( np.subtract(y[:,0], y[:,2]) ) ) )
+K1 = .5*M1 * np.power(y[:, 1], 2) + .5*M2 \
+       * (np.power(y[:, 1], 2) + np.power(y[:, 3], 2) + 2 *
+          np.multiply(np.multiply(y[:, 1], y[:, 3]),
+          cos(np.subtract(y[:, 0], y[:, 2]))))
 E = K1+U
 delta_E = E[1:]-E[:-1]
 
-# Uncomment following lines to plot energy difference over time:
-'''
-plt.figure()
-plt.plot(range(len(delta_E)),delta_E,'r-',lw=2)
-'''
+# plot energy difference over time
+plt.plot(range(len(delta_E)), delta_E, 'r-', lw=2)
 
-
-# Plotting animation
-
+# animation
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-2, 2), ylim=(-2, 2))
 ax.grid()
@@ -104,6 +92,4 @@ def animate(i):
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
-
-#ani.save('double_pendulum.mp4', fps=15)
 plt.show()
