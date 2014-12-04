@@ -3,8 +3,7 @@ import numpy as np
 import scipy.integrate as integrate
 
 
-def pendulum_pos(a1, a2):
-
+def pendulum_pos_hits_origin(a1, a2):
     g = 9.81
     l1 = 1.0
     l2 = 1.0
@@ -41,6 +40,13 @@ def pendulum_pos(a1, a2):
     y1 = -l1 * cos(y[:, 0])
     x2 = l2 * sin(y[:, 1]) + x1
     y2 = -l2 * cos(y[:, 1]) + y1
-    return ((x2[-1] == np.float64(0)) & (y2[-1] == np.float64(0)))
 
-print(pendulum_pos(90, 90))
+    for i in range(len(x1)):
+        if (x2[i] == 0) & (y2[i] == 0):
+            return True
+    return False
+
+
+for i in range(-180, 180):
+    for j in range(-180, 180):
+        print(i, j, pendulum_pos_hits_origin(i, j))
