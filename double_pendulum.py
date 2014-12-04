@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.animation as animation
+import seaborn as sns
 
 G = 9.8   # acceleration due to gravity, in m/s^2
 L1 = 1.0  # length of pendulum 1 in m
@@ -44,9 +45,9 @@ t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w1 and w2 are the initial angular velocities (degrees per second)
-th1 = 90.0
+th1 = 180.0
 w1 = 0.0
-th2 = 90.0
+th2 = 0.0
 w2 = 0.0
 
 rad = pi/180
@@ -62,6 +63,22 @@ y1 = -L1 * cos(y[:, 0])
 
 x2 = L2 * sin(y[:, 2]) + x1
 y2 = -L2 * cos(y[:, 2]) + y1
+
+# Energy calculations
+
+U = M1 * G * y1 + M2*G*y2
+K1 = .5* M1 * np.power(y[:,1],2) +  .5*M2 * ( np.power(y[:,1],2) + np.power(y[:,3],2) + 2 * np.multiply( np.multiply(y[:,1], y[:,3]) , cos( np.subtract(y[:,0], y[:,2]) ) ) )
+E = K1+U
+delta_E = E[1:]-E[:-1]
+
+# Uncomment following lines to plot energy difference over time:
+'''
+plt.figure()
+plt.plot(range(len(delta_E)),delta_E,'r-',lw=2)
+'''
+
+
+# Plotting animation
 
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-2, 2), ylim=(-2, 2))
