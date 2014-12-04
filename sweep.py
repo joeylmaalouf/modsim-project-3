@@ -1,15 +1,16 @@
-from numpy import sin, cos, pi
+from numpy import pi, sin, cos, arccos
 import numpy as np
 import scipy.integrate as integrate
 
 
-def pendulum_pos_hits_origin(a1, a2):
+def pendulum_pos_hits_origin(a1):
     g = 9.81
     l1 = 1.0
     l2 = 1.0
     m1 = 1.0
     m2 = 1.0
     m3 = m1 + m2
+    a2 = (arccos(-m1/(m2*l2) - l1/(l2*l2)*cos(a1*pi/180)*(m1+m2))) * 180/pi
 
     def derivs(state, t):
         theta1 = state[0]
@@ -47,6 +48,5 @@ def pendulum_pos_hits_origin(a1, a2):
     return False
 
 
-for i in range(-180, 180):
-    for j in range(-180, 180):
-        print(i, j, pendulum_pos_hits_origin(i, j))
+for i in np.arange(-180, 180, 0.5):
+        print(i, pendulum_pos_hits_origin(i))

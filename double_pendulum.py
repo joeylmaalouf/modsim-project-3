@@ -48,12 +48,12 @@ th1 = 145.0
 w1 = 0.0
 w2 = 0.0
 
-# This equation will give all th2 for th1 such that end energy = M1G
-th2 = arccos( -M1/(M2*L2) - L1/(M2*L2)*cos(th1*pi/180)*(M1+M2) )
+# This equation will give the th2 for th1 such that end energy = M1G
+th2 = arccos(-M1/(M2*L2) - L1/(M2*L2)*cos(th1*pi/180)*(M1+M2))
 th2 = th2*180/pi
 
 rad = pi/180
-state = np.array([th1, w1, th2, w2])*pi/180.
+state = np.array([th1, w1, th2, w2])*rad
 y = integrate.odeint(derivs, state, t)
 
 x1 = L1 * sin(y[:, 0])
