@@ -45,9 +45,9 @@ t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w1 and w2 are the initial angular velocities (degrees per second)
-th1 = 180.0
+th1 = 90.0
 w1 = 0.0
-th2 = 0.0
+th2 = 90.0
 w2 = 0.0
 
 rad = pi/180
