@@ -45,10 +45,10 @@ x2 = l2 * sin(y[:, 1]) + x1
 y2 = -l2 * cos(y[:, 1]) + y1
 
 U = m1*g*y1 + m2*g*y2
-K = m1 / 2 * np.power(y[:, 1], 2) + m2 / 2 \
-    * (np.power(y[:, 1], 2) + np.power(y[:, 3], 2) + 2
-    * np.multiply(np.multiply(y[:, 1], y[:, 3]),
-                  cos(np.subtract(y[:, 0], y[:, 2]))))
+K = m1 / 2 * np.power(y[:, 2], 2) + m2 / 2 \
+    * (np.power(y[:, 2], 2) + np.power(y[:, 3], 2) + 2
+    * np.multiply(np.multiply(y[:, 2], y[:, 3]),
+                  cos(np.subtract(y[:, 0], y[:, 1]))))
 E = K+U
 delta_E = E[1:]-E[:-1]
 plt.plot(range(len(delta_E)), delta_E, 'r-', lw=2)
