@@ -1,10 +1,9 @@
-# thanks http://matplotlib.org/examples/animation/double_pendulum_animated.html
-
 from numpy import sin, cos, pi
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.animation as animation
+import seaborn as sns
 
 g = 9.81
 l1 = 1.0
@@ -45,13 +44,19 @@ y1 = -l1 * cos(y[:, 0])
 x2 = l2 * sin(y[:, 1]) + x1
 y2 = -l2 * cos(y[:, 1]) + y1
 
-# plt.plot(x1, y1, x2, y2)
-# plt.show()
+U = m1*g*y1 + m2*g*y2
+K = m1 / 2 * np.power(y[:, 1], 2) + m2 / 2 \
+    * (np.power(y[:, 1], 2) + np.power(y[:, 3], 2) + 2
+    * np.multiply(np.multiply(y[:, 1], y[:, 3]),
+                  cos(np.subtract(y[:, 0], y[:, 2]))))
+E = K+U
+delta_E = E[1:]-E[:-1]
+plt.plot(range(len(delta_E)), delta_E, 'r-', lw=2)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-l3, l3), ylim=(-l3, l3))
 ax.grid()
-line, = ax.plot([], [], 'go-', lw=3)
+line, = ax.plot([], [], 'go-', lw=2)
 
 
 def init():
