@@ -36,7 +36,7 @@ def derivs(state, t):
 
     return [omega1, omega2, num1/den1, num2/den2]
 
-t = np.arange(0.0, 30, 0.05)
+t = np.arange(0.0, 60, 0.05)
 state = np.array([90.0, 90.0, 0.0, 0.0])*pi/180
 y = integrate.odeint(derivs, state, t)
 
@@ -51,7 +51,7 @@ y2 = -l2 * cos(y[:, 1]) + y1
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-l3, l3), ylim=(-l3, l3))
 ax.grid()
-line, = ax.plot([], [], 'go-', lw=2)
+line, = ax.plot([], [], 'go-', lw=3)
 
 
 def init():
