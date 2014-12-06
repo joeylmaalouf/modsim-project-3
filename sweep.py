@@ -10,7 +10,7 @@ def pendulum_pos_hits_origin(a1):
     m1 = 1.0
     m2 = 1.0
     m3 = m1 + m2
-    a2 = (arccos(-m1/(m2*l2) - l1/(l2*l2)*cos(a1*pi/180)*(m1+m2))) * 180/pi
+    a2 = (arccos(-m1/(m2*l2) - l1/(l2*l2)*cos(a1*pi/180)*(m3))) * 180/pi
 
     def derivs(state, t):
         theta1 = state[0]
@@ -33,7 +33,7 @@ def pendulum_pos_hits_origin(a1):
 
         return [omega1, omega2, num1/den1, num2/den2]
 
-    t = np.arange(0.0, 60, 0.05)
+    t = np.arange(0.0, 30, 0.05)
     state = np.array([a1, a2, 0.0, 0.0])*pi/180
     y = integrate.odeint(derivs, state, t)
 
@@ -42,11 +42,16 @@ def pendulum_pos_hits_origin(a1):
     x2 = l2 * sin(y[:, 1]) + x1
     y2 = -l2 * cos(y[:, 1]) + y1
 
-    for i in range(len(x1)):
-        if (x2[i] == 0) & (y2[i] == 0):
+    for i in range(len(x1)-2):
+        if (y1[i] > y2[i]) & (abs(x1[i]) <= 0.05) & \
+           (abs(x2[i]) <= 0.002) & (abs(y2[i]) <= 0.002) & \
+           (abs(x2[i+1]) <= 0.002) & (abs(y2[i+1]) <= 0.002) & \
+           (abs(x2[i+2]) <= 0.002) & (abs(y2[i+2]) <= 0.002):
             return True
     return False
 
 
-for i in np.arange(-180, 180, 0.5):
-        print(i, pendulum_pos_hits_origin(i))
+for i in np.arange(90.01, 180, 0.01):
+    if pendulum_pos_hits_origin(i):
+        print(i)
+# 92.25 is the best
