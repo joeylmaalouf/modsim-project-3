@@ -3,11 +3,10 @@ import numpy as np
 import scipy.integrate as integrate
 
 
-def pendulum_pos_hits_origin(a1):
+def pendulum_pos_hits_origin(a1, m1):
     g = 9.81
     l1 = 1.0
     l2 = 1.0
-    m1 = 1.0
     m2 = 1.0
     m3 = m1 + m2
     a2 = (arccos(-m1/(m2*l2) - l1/(l2*l2)*cos(a1*pi/180)*(m3))) * 180/pi
@@ -51,7 +50,13 @@ def pendulum_pos_hits_origin(a1):
     return False
 
 
-for i in np.arange(90.01, 180, 0.01):
-    if pendulum_pos_hits_origin(i):
-        print(i)
-# 92.25 is the best
+mratios = list(np.arange(0.5, 2, 0.1))
+angles = []
+for mr in mratios:
+    for a in np.arange(90.01, 180, 0.01):
+        if pendulum_pos_hits_origin(a, mr):
+            angles.append(a)
+            break
+# 92.25 is the best angle for a 1:1 ratio
+for mr, a in zip(mratios, angles):
+    print(mr, a)
