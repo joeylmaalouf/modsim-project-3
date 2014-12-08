@@ -40,17 +40,22 @@ def derivs(state, t):
 
 # create a time array from 0..20 sampled at 0.05 second steps
 dt = 0.01
-t = np.arange(0.0, 20, dt)
+t = np.arange(0.0, 30, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w1 and w2 are the initial angular velocities (degrees per second)
-th1 = 145.0
+th1 = 153.5 # 92.25 is still the best
 w1 = 0.0
 w2 = 0.0
 
 # This equation will give all th2 for th1 such that end energy = M1G
+
+print (-M1/(M2*L2) - L1/(M2*L2)*cos(th1*pi/180)*(M1+M2)) % 1
+
 th2 = arccos( -M1/(M2*L2) - L1/(M2*L2)*cos(th1*pi/180)*(M1+M2) )
 th2 = th2*180/pi
+
+print th2
 
 rad = pi/180
 state = np.array([th1, w1, th2, w2])*pi/180.
@@ -97,5 +102,5 @@ def animate(i):
     return line, time_text
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
-                              interval=25, blit=True, init_func=init)
+                              interval=10, blit=True, init_func=init)
 plt.show()
