@@ -56,7 +56,7 @@ plt.plot(range(len(delta_E)), delta_E, 'r-', lw=2)
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-l3, l3), ylim=(-l3, l3))
 ax.grid()
-line, = ax.plot([], [], 'go-', lw=2)
+line, = ax.plot([], [], 'ro-', lw=2)
 
 
 def init():
@@ -71,4 +71,5 @@ def animate(i):
 
 animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                         interval=30, blit=True, init_func=init)
+plt.plot(x1, y1, x2, y2)
 plt.show()
