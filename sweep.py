@@ -55,4 +55,4 @@ for mr in mratios:
     for a in np.arange(90.01, 180.01, 0.01):
         if pendulum_pos_hits_origin(a, mr, 1.0):
             print(mr, a)
-            break
+            # break
