@@ -1,0 +1,10 @@
+Introduction:
+The Double Pendulum
+-System: Chaotic
+-Goal: To find pairs of starting angles for the first and second pendulums
+that let M2 come to rest at the pivot while M1 stops in a relatively vertical
+line above the pivot
+-Technique: Used conservation of energy for all calculations,
+including what to sweep
+-Length ratio of pendulum 1 to pendulum 2: 1:1
+-Mass ratio of pendulum 1 to pendulum 2: 1:1
