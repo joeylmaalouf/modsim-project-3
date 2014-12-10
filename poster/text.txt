@@ -8,3 +8,9 @@ line above the pivot
 including what to sweep
 -Length ratio of pendulum 1 to pendulum 2: 1:1
 -Mass ratio of pendulum 1 to pendulum 2: 1:1
+
+Abstract:
+-Double pendulum system with a 1:1 mass ratio and 1:1 length ratio
+-Find angle pair that allows for rest in a vertical position
+-Best angle pair found was theta1 = 92.25, theta2 = 157.1455
+-Falls after some time due to chaotic error buildup in math
