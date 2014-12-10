@@ -64,25 +64,29 @@ x2 = L2 * sin(y[:, 2]) + x1
 y2 = -L2 * cos(y[:, 2]) + y1
 
 # plot energy over time
-# U = M1 * G * y1 + M2*G*y2
-# K1 = .5*M1 * np.power(y[:, 1], 2) + .5*M2 \
-       # * (np.power(y[:, 1], 2) + np.power(y[:, 3], 2) + 2 *
-          # np.multiply(np.multiply(y[:, 1], y[:, 3]),
-          # cos(np.subtract(y[:, 0], y[:, 2]))))
-# E = K1+U
-# plt.plot(range(len(E)), E, "r-", lw=2)
-# ax = plt.gca()
-# fmt = tick.ScalarFormatter(useOffset=False)
-# fmt.set_scientific(False)
-# ax.yaxis.set_major_formatter(fmt)
-# plt.xlabel("Time Step")
-# plt.ylabel("Total Energy")
+U = M1 * G * y1 + M2*G*y2
+K1 = .5*M1 * np.power(y[:, 1], 2) + .5*M2 \
+       * (np.power(y[:, 1], 2) + np.power(y[:, 3], 2) + 2 *
+          np.multiply(np.multiply(y[:, 1], y[:, 3]),
+          cos(np.subtract(y[:, 0], y[:, 2]))))
+E = K1+U
+fig = plt.figure()
+plt.plot(range(len(E)), E, "r-", lw=2)
+ax = plt.gca()
+fmt = tick.ScalarFormatter(useOffset=False)
+fmt.set_scientific(False)
+ax.yaxis.set_major_formatter(fmt)
+plt.xlabel("Time Step")
+plt.ylabel("Total Energy")
+plt.title("Total Energy Over Time")
 
 # plot energy difference over time
-# delta_E = E[1:]-E[:-1]
-# plt.plot(range(len(delta_E)), delta_E, "r-", lw=2)
-# plt.xlabel("Time Step")
-# plt.ylabel("Change in Energy")
+fig = plt.figure()
+delta_E = E[1:]-E[:-1]
+plt.plot(range(len(delta_E)), delta_E, "r-", lw=2)
+plt.xlabel("Time Step")
+plt.ylabel("Change in Energy")
+plt.title("Change in Energy Over Time")
 
 # animation
 fig = plt.figure()
