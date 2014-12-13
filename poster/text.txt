@@ -13,19 +13,7 @@ including what to sweep
 -Mass ratio of pendulum 1 to pendulum 2: 1:1
 
 Introduction: The Double Pendulum System
-The double pendulum is a chaotic system. This means that it is extremely
-sensitive to the initial conditions, and any deviation from perfect initial
-conditions will quickly compound into more and more mathematical error as
-more time passes in the system. Our goal in modeling this system was to find
-the perfect initial angle conditions that, when paired with initial velocity
-conditions of 0, resulted in a vertically still resting period. We held the
-ratio of pendulum lengths and mass lengths constant at 1:1, meaning that the
-length of the first pendulum is equal to the length of the second and the mass
-of the first pendulum is equal to the mass of the second. Because we assumed the
-initial values of the velocities, and the lengths and masses are constant, the
-only parameters we tweaked were the initial angles of the two pendulums. We used
-the law of conservation of energy to calculate the angle of the second pendulum
-such that the total change in energy is equal to 0.
+The double pendulum is a chaotic system. This means that it is extremely sensitive to the initial conditions, and any deviation from perfect initial conditions will quickly compound into more and more mathematical error as more time passes in the system. Our goal in modeling this system was to find the perfect initial angle conditions that, when paired with initial velocity conditions of 0, resulted in a vertically still resting period. We held the ratio of pendulum lengths and mass lengths constant at 1:1, meaning that the length of the first pendulum is equal to the length of the second and the mass of the first pendulum is equal to the mass of the second. Because we assumed the initial values of the velocities, and the lengths and masses are constant, the only parameters we tweaked were the initial angles of the two pendulums. We used the law of conservation of energy to calculate the angle of the second pendulum such that the total change in energy is equal to 0.
 
 
 Abstract:
@@ -35,12 +23,4 @@ Abstract:
 -Falls after some time due to chaotic error buildup in math
 
 Abstract: The Double Pendulum Model
-We modeled the system with massless rods connecting the pendulums and the pivot,
-and set the pendulums to be identical in terms of length and mass. The only
-differences were the initial angles of the pendulums, which we swept to find the
-best values. Our results showed that an initial angle of 92.25 for the first
-pendulum and 157.1534 for the second pendulum produce our desired result. It is
-not perfectly stable, since the mathematical error compounds upon itself, but it
-stays at rest vertically for long enough to satisfy our goal. This error comes
-from the fact that a chaotic system is very sensitive to initial parameters, and
-even slightly imperfect ones will result in a buildup of error over time.
+We modeled the system with massless rods connecting the pendulums and the pivot, and set the pendulums to be identical in terms of length and mass. The only differences were the initial angles of the pendulums, which we swept to find the best values. Our results showed that an initial angle of 92.25 for the first pendulum and 157.1534 for the second pendulum produce our desired result. It is not perfectly stable, since the mathematical error compounds upon itself, but it stays at rest vertically for long enough to satisfy our goal. This error comes from the fact that a chaotic system is very sensitive to initial parameters, and even slightly imperfect ones will result in a buildup of error over time.
