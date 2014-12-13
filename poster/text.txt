@@ -31,7 +31,7 @@ such that the total change in energy is equal to 0.
 Abstract:
 -Double pendulum system with a 1:1 mass ratio and 1:1 length ratio
 -Find angle pair that allows for rest in a vertical position
--Best angle pair found was theta1 = 92.25, theta2 = 157.1455
+-Best angle pair found was theta1 = 92.25, theta2 = 157.1534
 -Falls after some time due to chaotic error buildup in math
 
 Abstract: The Double Pendulum Model
@@ -39,7 +39,7 @@ We modeled the system with massless rods connecting the pendulums and the pivot,
 and set the pendulums to be identical in terms of length and mass. The only
 differences were the initial angles of the pendulums, which we swept to find the
 best values. Our results showed that an initial angle of 92.25 for the first
-pendulum and 157.1455 for the second pendulum produce our desired result. It is
+pendulum and 157.1534 for the second pendulum produce our desired result. It is
 not perfectly stable, since the mathematical error compounds upon itself, but it
 stays at rest vertically for long enough to satisfy our goal. This error comes
 from the fact that a chaotic system is very sensitive to initial parameters, and
